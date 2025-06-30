@@ -1,0 +1,5 @@
+supergraph:
+  introspection: true
+  listen: 0.0.0.0:4003
+  location:
+    url: http://localhost:4000/supergraph

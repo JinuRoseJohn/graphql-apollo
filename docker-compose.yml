@@ -1,0 +1,29 @@
+services:
+  query-subgraph:
+    build:
+      context: ./subgraphs/query-subgraph
+    ports:
+      - "4001:4001"
+    volumes:
+      - ./subgraphs/query-subgraph:/app
+    working_dir: /app
+    command: ["node", "index.js"]
+
+  mutation-subgraph:
+    build:
+      context: ./subgraphs/mutation-subgraph
+    ports:
+      - "4002:4002"
+    volumes:
+      - ./subgraphs/mutation-subgraph:/app
+    working_dir: /app
+    command: ["node", "index.js"]
+
+
+  router:
+    image: ghcr.io/apollographql/router:v1.38.0
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./router/supergraph.graphql:/supergraph.graphql
+    command: --supergraph /supergraph.graphql

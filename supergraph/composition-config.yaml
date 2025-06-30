@@ -1,0 +1,10 @@
+federation_version: =2.11.0
+subgraphs:
+  query:
+    routing_url: http://localhost:4001
+    schema:
+      file: /Users/jinurosejohn/Downloads/graphql-apollo-router-poc/subgraphs/query-subgraph/schema.graphql
+  mutation:
+    routing_url: http://localhost:4002
+    schema:
+      file: /Users/jinurosejohn/Downloads/graphql-apollo-router-poc/subgraphs/mutation-subgraph/schema.graphql
