@@ -1,0 +1,22 @@
+{
+  "family": "mutation-task",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::851725443575:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "mutation-subgraph",
+      "image": "851725443575.dkr.ecr.us-east-1.amazonaws.com/graphql-apollo-router-poc-mutation-subgraph:latest",
+      "portMappings": [
+        {
+          "containerPort": 4002,
+          "protocol": "tcp"
+        }
+      ],
+      "command": ["node", "index.js"],
+      "essential": true
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "family": "router-task",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::851725443575:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "router",
+      "image": "851725443575.dkr.ecr.us-east-1.amazonaws.com/graphql-apollo-router-poc-router:latest",
+      "portMappings": [
+        {
+          "containerPort": 4000,
+          "protocol": "tcp"
+        }
+      ],
+      "command": [
+        "--supergraph",
+        "/supergraph.graphql"
+      ],
+      "mountPoints": [],
+      "essential": true
+    }
+  ]
+}

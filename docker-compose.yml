@@ -1,29 +1,28 @@
+version: "3.8"
+
 services:
   query-subgraph:
     build:
       context: ./subgraphs/query-subgraph
+    image: graphql-apollo-router-poc-query-subgraph:latest
     ports:
       - "4001:4001"
-    volumes:
-      - ./subgraphs/query-subgraph:/app
     working_dir: /app
     command: ["node", "index.js"]
 
   mutation-subgraph:
     build:
       context: ./subgraphs/mutation-subgraph
+    image: graphql-apollo-router-poc-mutation-subgraph:latest
     ports:
       - "4002:4002"
-    volumes:
-      - ./subgraphs/mutation-subgraph:/app
     working_dir: /app
     command: ["node", "index.js"]
 
-
   router:
-    image: ghcr.io/apollographql/router:v1.38.0
+    build:
+      context: ./router
+    image: graphql-apollo-router-poc-router:latest
     ports:
       - "4000:4000"
-    volumes:
-      - ./router/supergraph.graphql:/supergraph.graphql
-    command: --supergraph /supergraph.graphql
+    command: ["--supergraph", "/supergraph.graphql"]
